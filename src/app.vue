@@ -90,8 +90,10 @@
             <f7-list>
               <f7-list-item link="/about/" title="About"></f7-list-item>
               <f7-list-item link="/form/" title="Form"></f7-list-item>
+              <f7-list-item link="/meizi/" title="Meizi11"></f7-list-item>
               <f7-list-item link="/dynamic-route/blog/45/post/125/?foo=bar#about" title="Dynamic Route"></f7-list-item>
             </f7-list>
+            <!--<Test></Test>-->
             <f7-block-title>Side Panels</f7-block-title>
             <f7-block>
               <f7-grid>
@@ -166,5 +168,10 @@
 </template>
 
 <script>
-export default {}
+    import Test from './pages/meizi'
+    export default {
+        components: {
+            Test
+        }
+}
 </script>

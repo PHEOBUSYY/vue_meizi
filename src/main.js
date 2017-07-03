@@ -23,10 +23,11 @@ import Routes from './routes.js'
 
 // Import App Component
 import App from './app'
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 // Init F7 Vue Plugin
-Vue.use(Framework7Vue)
-
+Vue.use(Framework7Vue);
+Vue.use(VueAxios, axios);
 // Init App
 new Vue({
   el: '#app',
