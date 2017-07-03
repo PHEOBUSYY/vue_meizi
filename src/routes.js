@@ -14,6 +14,14 @@ export default [
     {
         path: '/meizi/',
         component: require('./pages/meizi.vue')
-    }
+    },
+    {
+        path: '/feed/',
+        component: require('./pages/feed.vue')
+    },
+    {
+        path: '/me/',
+        component: require('./pages/me.vue')
+    },
 
 ]
