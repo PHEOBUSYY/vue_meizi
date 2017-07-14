@@ -169,7 +169,7 @@
 </template>
 
 <script>
-    import Test from './pages/meizi'
+    import Test from './pages/meizi/meizi'
     export default {
         components: {
             Test

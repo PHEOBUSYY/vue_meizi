@@ -1,40 +1,29 @@
 //  发送网络请求并生成列表的模板
-
-
+<!--suppress ALL -->
 <template>
     <f7-view main tab :active="active">
         <f7-page pull-to-refresh @ptr:refresh="onRefresh" navbar-through toolbar-through
                  infinite-scroll @infinite="onInfiniteScroll">
-            <f7-navbar :back-link="backText">
-                <!--<f7-nav-left back-link="Back" sliding></f7-nav-left>-->
-                <div class="center" @click="showActionList" ref="tt">{{titleText}}</div>
+            <f7-navbar :back-link="backText" theme="yellow" layout="dark">
+                <f7-nav-left>
+                    <f7-link icon-f7="menu" open-panel="left"></f7-link>
+                </f7-nav-left>
+                <f7-nav-center @click.native="showActionList">
+                    <p>{{titleText}}</p>
+                    <!--<f7-link theme="white" icon-f7="arrow_down"></f7-link>-->
+                </f7-nav-center>
                 <f7-nav-right>
-                    <f7-link icon="icon-bars" @click="showActionList"></f7-link>
+                    <f7-link icon-f7="add_round" @click="showActionList"></f7-link>
+                    <!--<f7-link icon-f7="add" open-popup="#popup"></f7-link>-->
                 </f7-nav-right>
             </f7-navbar>
-            <f7-list>
-                <f7-list-item @click="onItemClick(index)" v-for="(item, index) in dataList"
-                              :key="item.thumb_url">
-                    <div slot="media">
-                        <img v-bind:src="item.thumb_url">
-                    </div>
-                    <div slot="inner">
-                        <p class="center-horizontal center-vertical">{{item.title}}</p>
-                    </div>
-                </f7-list-item>
-            </f7-list>
+            <!--<f7-block-title>Block Title</f7-block-title>-->
+            <meizi_item :dataList="dataList"></meizi_item>
         </f7-page>
-        <!--<div class="popover popover-links">-->
-        <!--<div class="popover-angle"></div>-->
-        <!--<div class="popover-inner">-->
-        <!--<f7-list>-->
-        <!--<f7-list-item @click="onCategoryClick2(index)" v-for="(cay, index) in typeArray"  :title="cay.text" :key="cay.param"></f7-list-item>-->
-        <!--</f7-list>-->
-        <!--</div>-->
-        <!--</div>-->
     </f7-view>
 </template>
 <script>
+    import meizi_item from './meizi_item'
     export default{
         data: function () {
             return {
@@ -69,7 +58,7 @@
                         param: 'ZaHui'
                     }
                 ],
-                page: 1
+                page: 1,
             }
         },
         props: {
@@ -86,7 +75,7 @@
             backText: {
                 type: String,
                 default: '',
-                requried: false
+                required: false
             }
         },
         methods: {
@@ -101,7 +90,7 @@
 
             },
             resolve: function (response) {
-                var temp = response.data.results;
+                let temp = response.data.results;
                 if (this.page === 1) {
                     this.$f7.pullToRefreshDone();
                     this.dataList = temp;
@@ -110,35 +99,19 @@
                         this.$f7.detachInfiniteScroll(this.$$('.infinite-scroll'));
                         this.$$('.infinite-scroll-preloader').remove();
                     }
-                    for (var data of temp) {
+                    for (let data of temp) {
                         this.dataList.push(data);
                     }
 
                 }
-//                this.dataList = [];
-//                for (var data of response.data.results) {
-//                    this.dataList.push(data);
-//                }
-
             },
             toImage: function (imgUrl) {
                 return '<img height="50px" width="50px" align="middle" src="' + imgUrl + '">'
             },
-            onItemClick: function (index) {
-                //通过f7对象直接创建photoBrowser组件对象
-                var photoBrowser = this.$f7.photoBrowser({
-                    photos: [{
-                        url: this.dataList[index].image_url,
-                        caption: this.dataList[index].title
-                    }],
-                    type: 'popup'
-                });
-                photoBrowser.open()
-            },
             onOpen: function () {
             },
             showActionList: function () {
-                var buttonsArray = [];
+                let buttonsArray = [];
                 for (let index = 0; index < this.typeArray.length; index++) {
                     buttonsArray[index] = {
                         text: this.typeArray[index].text,
@@ -178,32 +151,8 @@
         created: function () {
             this.requestData()
         },
-        components: {}
+        components: {
+            meizi_item
+        }
     }
 </script>
-<style scoped>
-    img {
-        width: 70px;
-        height: 70px;
-    }
-
-    /*p{*/
-    /*color: blue;*/
-    /*line-height: 70px;*/
-    /*}*/
-    .center-vertical {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .center-horizontal {
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    /*.popover {*/
-    /*width: 200px;*/
-    /*}*/
-</style>

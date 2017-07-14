@@ -1,27 +1,25 @@
+//需要解决的问题：
+//子类嵌套的问题
 export default [
     {
-        path: '/about/',
-        component: require('./pages/about.vue')
+        path: '/mz/about/',
+        component: require('./pages/meizi/about.vue')
     },
     {
-        path: '/form/',
-        component: require('./pages/form.vue')
+        path: '/mz/form/',
+        component: require('./pages/meizi/form.vue')
     },
     {
-        path: '/dynamic-route/blog/:blogId/post/:postId/',
-        component: require('./pages/dynamic-route.vue')
+        path: '/mz/dynamic-route/blog/:blogId/post/:postId/',
+        component: require('./pages/meizi/dynamic-route.vue')
     },
     {
-        path: '/meizi/',
-        component: require('./pages/meizi.vue')
+        path: '/mz/meizi/',
+        component: require('./pages/meizi/meizi.vue')
     },
     {
-        path: '/feed/',
-        component: require('./pages/feed.vue')
-    },
-    {
-        path: '/me/',
-        component: require('./pages/me.vue')
-    },
+        path: '/mz/me/',
+        component: require('./pages/meizi/me.vue')
+    }
 
 ]
