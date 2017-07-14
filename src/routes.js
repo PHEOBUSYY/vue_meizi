@@ -1,5 +1,5 @@
 //需要解决的问题：
-//子类嵌套的问题
+//1.子类嵌套的问题
 export default [
     {
         path: '/mz/about/',

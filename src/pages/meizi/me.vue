@@ -1,15 +1,24 @@
 <template>
-    <f7-view :id="id" main tab :active="active">
+    <f7-view main tab :active="active">
         <f7-pages>
             <f7-page navbar-through>
                 <f7-navbar>
-                    <f7-navbar :title="id" sliding></f7-navbar>
+                    <f7-navbar :title="title" sliding></f7-navbar>
                 </f7-navbar>
                 <!-- Page Content -->
+                <f7-block-title>介绍</f7-block-title>
                 <f7-list>
-                    <f7-list-item link="/mz/about/" title="About"></f7-list-item>
-                    <f7-list-item link="/mz/form/" title="Form"></f7-list-item>
-                    <f7-list-item link="/mz/dynamic-route/blog/45/post/125/?foo=bar#about" title="Dynamic Route"></f7-list-item>
+                        <f7-list-item link="/mz/about/" title="关于"></f7-list-item>
+                        <f7-list-item link="/mz/form/" title="表单"></f7-list-item>
+                        <f7-list-item link="/mz/dynamic-route/blog/45/post/125/?foo=bar#about"
+                                      title="动态路由示例"></f7-list-item>
+                </f7-list>
+                <f7-block-title>介绍2</f7-block-title>
+                <f7-list>
+                    <f7-list-item link="/mz/about/" title="关于"></f7-list-item>
+                    <f7-list-item link="/mz/form/" title="表单"></f7-list-item>
+                    <f7-list-item link="/mz/dynamic-route/blog/45/post/125/?foo=bar#about"
+                                  title="动态路由示例"></f7-list-item>
                 </f7-list>
             </f7-page>
         </f7-pages>
@@ -23,7 +32,7 @@
                 default: false,
                 required: false
             },
-            id: {
+            title: {
                 type: String,
                 default: '标签',
                 required: true

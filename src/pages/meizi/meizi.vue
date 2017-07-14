@@ -24,6 +24,7 @@
 </template>
 <script>
     import meizi_item from './meizi_item'
+    import bus from '../../eventBus'
     export default{
         data: function () {
             return {
@@ -149,10 +150,27 @@
             }
         },
         created: function () {
-            this.requestData()
+            this.requestData();
+
+        },
+        mounted: function () {
+            var self = this;
+            bus.$on('changeCategory',function (category2) {
+                self.category = category2;
+                for (var typeObj of self.typeArray){
+                    if (typeObj.param === category2){
+                        self.titleText = typeObj.text;
+                        break;
+                    }
+                }
+                self.page = 1;
+                self.dataList = [];
+                self.requestData();
+            });
         },
         components: {
-            meizi_item
+            meizi_item, bus
         }
+
     }
 </script>

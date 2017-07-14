@@ -9,7 +9,7 @@
             <f7-card-content>
                 <f7-grid @click.native="onItemClick(index)">
                     <f7-col width="35">
-                        <img v-bind:src="item.thumb_url">
+                        <img class="lazy lazy-fadein" v-bind:src="item.thumb_url">
                     </f7-col>
                     <f7-col width="65">
                         {{item.title}}
