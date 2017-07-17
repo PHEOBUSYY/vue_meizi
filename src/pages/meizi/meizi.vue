@@ -154,18 +154,17 @@
 
         },
         mounted: function () {
-            var self = this;
-            bus.$on('changeCategory',function (category2) {
-                self.category = category2;
-                for (var typeObj of self.typeArray){
-                    if (typeObj.param === category2){
-                        self.titleText = typeObj.text;
+            bus.$on('changeCategory',(category) => {
+                this.category = category;
+                for (var typeObj of this.typeArray){
+                    if (typeObj.param === category){
+                        this.titleText = typeObj.text;
                         break;
                     }
                 }
-                self.page = 1;
-                self.dataList = [];
-                self.requestData();
+                this.page = 1;
+                this.dataList = [];
+                this.requestData();
             });
         },
         components: {
