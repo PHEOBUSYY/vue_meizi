@@ -23,17 +23,17 @@
     </f7-view>
 </template>
 <script>
-    import {NUMBER_MUTATION} from '../../mutation-type'
+    import {NUMBER_MUTATION} from '../../vuex/mutation-type'
     import meizi_item from './meizi_item'
-    import bus from '../../eventBus'
-    import store from '../../store'
-    import {mapState, mapGetters} from 'vuex'
-    import { mapActions } from 'vuex'
+//    import bus from '../../eventBus'
+    import store from '../../vuex/store'
+//    import {mapState, mapGetters} from 'vuex'
+//    import { mapActions } from 'vuex'
     export default{
         data: function () {
             return {
                 dataList: [],
-                category: 'All',
+                category: this.$store.state.meizi.category,
                 titleText: this.title,
                 typeArray: [
                     {
@@ -64,6 +64,24 @@
                     }
                 ],
                 page: 1,
+            }
+        },
+        watch: {
+            deep: true,
+//            category: function (val,oldVal) {
+//                alert(val + "00----" + oldVal)
+//            },
+            newCategory: function (val, oldVal) {
+                for (var typeObj of this.typeArray) {
+                    if (typeObj.param === val) {
+                        this.titleText = typeObj.text;
+                        break;
+                    }
+                }
+                this.category = val;
+                this.page = 1;
+                this.dataList = [];
+                this.requestData();
             }
         },
         props: {
@@ -155,51 +173,34 @@
         },
         created: function () {
             this.requestData();
-            alert(this.$store.state.a.countA);
-            alert(this.$store.state.b.countB);
-            alert(this.countA)
-            alert(this.countB)
-//            this.$store.dispatch(NUMBER_MUTATION);
-//            this.$store.commit('increment2', {
-//                temp: 'nihao',
-//                name: 'lae'
-//            });
-//            alert(this.showToast);
-//            setTimeout(() => {
-//                alert(this.count)
-//            },2000);
-//            setTimeout(() => {
-//                alert(this.count)
-//            },1000);
-//            alert(this.count);
-
         },
         mounted: function () {
-            bus.$on('changeCategory', (category) => {
-                this.category = category;
-                for (var typeObj of this.typeArray) {
-                    if (typeObj.param === category) {
-                        this.titleText = typeObj.text;
-                        break;
-                    }
-                }
-                this.page = 1;
-                this.dataList = [];
-                this.requestData();
-            });
+//            bus.$on('changeCategory', (category) => {
+//                this.category = category;
+//                for (var typeObj of this.typeArray) {
+//                    if (typeObj.param === category) {
+//                        this.titleText = typeObj.text;
+//                        break;
+//                    }
+//                }
+//                this.page = 1;
+//                this.dataList = [];
+//                this.requestData();
+//            });
         },
         components: {
-            meizi_item, bus
+            meizi_item,
+//            bus
         },
         store,
-        computed: mapState({
-            countA: state => state.a.countA,
-            countAlias: 'countA',
-            countB: state => state.b.countB,
-            countAlias: 'countB',
-        })
-//        computed: mapState([
-//            'count'
-//        ])
+//        computed: mapState({
+//            newCategory: state => state.meizi.category,
+//            countAlias: 'newCategory',
+//        })
+        computed: {
+            newCategory: function () {
+                return this.$store.state.meizi.category;
+            }
+        }
     }
 </script>

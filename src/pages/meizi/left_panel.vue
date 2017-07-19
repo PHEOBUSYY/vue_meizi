@@ -23,16 +23,19 @@
 </template>
 <script>
     import bus from '../../eventBus'
-
+    import store from '../../vuex/store'
+    import {CATEGORY_MUTATION} from '../../vuex/mutation-type'
     export default{
         methods: {
             goToSee: function (category) {
-                bus.$emit('changeCategory',category);
+                this.$store.dispatch(CATEGORY_MUTATION,category);
+//                bus.$emit('changeCategory',category);
             }
         },
         components: {
             bus
         },
+        store,
         data: function () {
             return {
                 typeArray: [
