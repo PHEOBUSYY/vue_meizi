@@ -10,11 +10,11 @@
                     </f7-block>
                     <f7-block-title>常用分类</f7-block-title>
                     <f7-list>
-                        <f7-list-item link="#" v-for="(item, index) in frequencyTypeArray" :title="item.text" @click="goToSee(item.param)" link-close-panel></f7-list-item>
+                        <f7-list-item :key="index" link="#" v-for="(item, index) in frequencyTypeArray" :title="item.text" @click="goToSee(item.param)" link-close-panel></f7-list-item>
                     </f7-list>
                     <f7-block-title>全部分类</f7-block-title>
                     <f7-list>
-                        <f7-list-item link="#" v-for="(item, index) in typeArray" :title="item.text" @click="goToSee(item.param)" link-close-panel></f7-list-item>
+                        <f7-list-item :key="index" link="#" v-for="(item, index) in typeArray" :title="item.text" @click="goToSee(item.param)" link-close-panel></f7-list-item>
                     </f7-list>
                 </f7-page>
             </f7-pages>

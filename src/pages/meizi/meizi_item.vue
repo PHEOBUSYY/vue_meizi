@@ -21,7 +21,7 @@
                 <f7-link color="gray" @click="comment(index)">评论</f7-link>
             </f7-card-footer>
             <f7-list>
-                <f7-list-item class="bg-white" @click="onItemClickComment(index,item)" v-for="(item2, index) in item.commentList" divider>
+                <f7-list-item :key="index"  class="bg-white" @click="onItemClickComment(index,item)" v-for="(item2, index) in item.commentList" divider>
                     {{item.commentList[index]}}
                 </f7-list-item>
             </f7-list>

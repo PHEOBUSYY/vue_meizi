@@ -23,8 +23,12 @@
     </f7-view>
 </template>
 <script>
+    import {NUMBER_MUTATION} from '../../mutation-type'
     import meizi_item from './meizi_item'
     import bus from '../../eventBus'
+    import store from '../../store'
+    import {mapState, mapGetters} from 'vuex'
+    import { mapActions } from 'vuex'
     export default{
         data: function () {
             return {
@@ -147,17 +151,34 @@
                 //  加载更多
                 this.page++;
                 this.requestData();
-            }
+            },
         },
         created: function () {
             this.requestData();
+            alert(this.$store.state.a.countA);
+            alert(this.$store.state.b.countB);
+            alert(this.countA)
+            alert(this.countB)
+//            this.$store.dispatch(NUMBER_MUTATION);
+//            this.$store.commit('increment2', {
+//                temp: 'nihao',
+//                name: 'lae'
+//            });
+//            alert(this.showToast);
+//            setTimeout(() => {
+//                alert(this.count)
+//            },2000);
+//            setTimeout(() => {
+//                alert(this.count)
+//            },1000);
+//            alert(this.count);
 
         },
         mounted: function () {
-            bus.$on('changeCategory',(category) => {
+            bus.$on('changeCategory', (category) => {
                 this.category = category;
-                for (var typeObj of this.typeArray){
-                    if (typeObj.param === category){
+                for (var typeObj of this.typeArray) {
+                    if (typeObj.param === category) {
                         this.titleText = typeObj.text;
                         break;
                     }
@@ -169,7 +190,16 @@
         },
         components: {
             meizi_item, bus
-        }
-
+        },
+        store,
+        computed: mapState({
+            countA: state => state.a.countA,
+            countAlias: 'countA',
+            countB: state => state.b.countB,
+            countAlias: 'countB',
+        })
+//        computed: mapState([
+//            'count'
+//        ])
     }
 </script>
