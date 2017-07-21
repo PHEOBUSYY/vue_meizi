@@ -7,7 +7,7 @@
                         <p>{{title}}</p>
                     </f7-nav-center>
                     <f7-nav-right>
-                        <f7-link icon-f7="settings" color="white"></f7-link>
+                        <f7-link icon-f7="settings"></f7-link>
                     </f7-nav-right>
                 </f7-navbar>
                 <!-- Page Content -->

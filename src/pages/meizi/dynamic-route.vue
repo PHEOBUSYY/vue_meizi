@@ -1,6 +1,6 @@
 <template>
   <f7-page>
-    <f7-navbar title="Dynamic Route" back-link="Back" sliding></f7-navbar>
+    <f7-navbar title="Dynamic Route" back-link="Back" sliding theme="yellow" layout="dark"></f7-navbar>
     <f7-block inner>
       <ul>
         <li><b>Url:</b> {{$route.url}}</li>

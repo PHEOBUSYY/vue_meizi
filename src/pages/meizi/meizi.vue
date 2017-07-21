@@ -6,14 +6,14 @@
                  infinite-scroll @infinite="onInfiniteScroll">
             <f7-navbar :back-link="backText" theme="yellow" layout="dark">
                 <f7-nav-left>
-                    <f7-link   icon-f7="menu" color="white" open-panel="left"></f7-link>
+                    <f7-link   icon-f7="menu" open-panel="left"></f7-link>
                 </f7-nav-left>
                 <f7-nav-center @click.native="showActionList">
                     <p>{{titleText}}</p>
                     <!--<f7-link theme="white" icon-f7="arrow_down"></f7-link>-->
                 </f7-nav-center>
                 <f7-nav-right>
-                    <f7-link icon-f7="add_round" color="white" @click="showActionList"></f7-link>
+                    <f7-link icon-f7="add_round" @click="showActionList"></f7-link>
                     <!--<f7-link icon-f7="add" open-popup="#popup"></f7-link>-->
                 </f7-nav-right>
             </f7-navbar>

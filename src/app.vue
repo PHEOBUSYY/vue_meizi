@@ -1,10 +1,10 @@
 <template>
     <div id="app">
+        <f7-statusbar></f7-statusbar>
         <!-- Left Panel -->
         <left_panel v-on:changeCategory="test"></left_panel>
         <!-- Popup -->
         <popup></popup>
-        <f7-statusbar></f7-statusbar>
         <f7-views tabs>
             <meizi id="tab1" title="全部" active backText="">
             </meizi>
@@ -36,4 +36,16 @@
     }
 </script>
 <style scoped>
+    /* Default Status bar background */
+    .statusbar-overlay {
+        background: #131313;
+        /* We can add transition for smooth color animation */
+        -webkit-transition: 400ms;
+        transition: 400ms;
+    }
+
+    /* Change Status bar background when panel opened */
+    body.with-panel-left-cover .statusbar-overlay {
+        background: #222;
+    }
 </style>
