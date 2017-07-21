@@ -118,7 +118,7 @@
 </script>
 <style scoped>
     img {
-        width: 110px;
+        width: 100%;
         /*height: 70px;*/
     }
     .grayFont {

@@ -6,14 +6,14 @@
                  infinite-scroll @infinite="onInfiniteScroll">
             <f7-navbar :back-link="backText" theme="yellow" layout="dark">
                 <f7-nav-left>
-                    <f7-link icon-f7="menu" open-panel="left"></f7-link>
+                    <f7-link   icon-f7="menu" color="white" open-panel="left"></f7-link>
                 </f7-nav-left>
                 <f7-nav-center @click.native="showActionList">
                     <p>{{titleText}}</p>
                     <!--<f7-link theme="white" icon-f7="arrow_down"></f7-link>-->
                 </f7-nav-center>
                 <f7-nav-right>
-                    <f7-link icon-f7="add_round" @click="showActionList"></f7-link>
+                    <f7-link icon-f7="add_round" color="white" @click="showActionList"></f7-link>
                     <!--<f7-link icon-f7="add" open-popup="#popup"></f7-link>-->
                 </f7-nav-right>
             </f7-navbar>
@@ -25,10 +25,10 @@
 <script>
     import {NUMBER_MUTATION} from '../../vuex/mutation-type'
     import meizi_item from './meizi_item'
-//    import bus from '../../eventBus'
+    //    import bus from '../../eventBus'
     import store from '../../vuex/store'
-//    import {mapState, mapGetters} from 'vuex'
-//    import { mapActions } from 'vuex'
+    import {mapState, mapGetters} from 'vuex'
+    //    import { mapActions } from 'vuex'
     export default{
         data: function () {
             return {
@@ -193,10 +193,15 @@
 //            bus
         },
         store,
-//        computed: mapState({
-//            newCategory: state => state.meizi.category,
-//            countAlias: 'newCategory',
-//        })
+//        computed: {
+//            ...mapState({
+//                newCategory: state => state.meizi.category,
+//                countAlias: 'newCategory',
+//            }),
+//            ...mapGetters({
+//
+//            })
+//        },
         computed: {
             newCategory: function () {
                 return this.$store.state.meizi.category;

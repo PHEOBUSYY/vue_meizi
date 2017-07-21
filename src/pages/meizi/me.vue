@@ -2,8 +2,13 @@
     <f7-view main tab :active="active">
         <f7-pages>
             <f7-page navbar-through>
-                <f7-navbar>
-                    <f7-navbar :title="title" sliding></f7-navbar>
+                <f7-navbar theme="yellow" layout="dark">
+                    <f7-nav-center>
+                        <p>{{title}}</p>
+                    </f7-nav-center>
+                    <f7-nav-right>
+                        <f7-link icon-f7="settings" color="white"></f7-link>
+                    </f7-nav-right>
                 </f7-navbar>
                 <!-- Page Content -->
                 <f7-block-title>介绍</f7-block-title>

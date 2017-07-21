@@ -11,9 +11,9 @@
             <me id="tab2" title="我" ></me>
             <f7-toolbar tabbar labels layout="dark" theme="yellow">
                 <!--icon-badge="5"添加数字-->
-                <f7-link icon-f7="data" tab-link="#tab1" text="妹子"
-                         badgeColor="red" active></f7-link>
-                <f7-link icon-f7="bell"  tab-link="#tab2" text="我"></f7-link>
+                <f7-link icon-f7="home" tab-link="#tab1" text="妹子"
+                          active></f7-link>
+                <f7-link  icon-f7="bell" tab-link="#tab2" text="我"></f7-link>
             </f7-toolbar>
         </f7-views>
     </div>
@@ -35,3 +35,5 @@
 
     }
 </script>
+<style scoped>
+</style>
