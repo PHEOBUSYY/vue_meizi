@@ -14,6 +14,7 @@
                 <f7-block-title>介绍</f7-block-title>
                 <f7-list>
                         <f7-list-item link="/mz/about/" title="关于"></f7-list-item>
+                        <f7-list-item link="/mz/chart/" title="报表"></f7-list-item>
                         <f7-list-item link="/mz/form/" title="表单"></f7-list-item>
                         <f7-list-item link="/mz/dynamic-route/blog/45/post/125/?foo=bar#about"
                                       title="动态路由示例"></f7-list-item>

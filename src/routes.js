@@ -20,6 +20,10 @@ export default [
     {
         path: '/mz/me/',
         component: require('./pages/meizi/me.vue')
+    },
+    {
+        path: '/mz/chart/',
+        component: require('./pages/meizi/chart.vue')
     }
 
 ]

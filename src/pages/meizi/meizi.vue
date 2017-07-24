@@ -109,7 +109,9 @@
                     data: {}
                 }).then((response) => {
                     this.resolve(response);
-                })
+                }).catch(function (error) {
+                    alert(error);
+                });
 
             },
             resolve: function (response) {

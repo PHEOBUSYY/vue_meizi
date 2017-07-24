@@ -1,10 +1,12 @@
 //  列表条目
 
+
 <template>
     <f7-list no-hairlines-between>
         <f7-card v-for="(item, index) in dataList"
                  :key="item.thumb_url">
-            <f7-card-header v-on:click.native="clickCardHeader(index)" class="grayFont" v-html="getCategoryText(item.category)">
+            <f7-card-header v-on:click.native="clickCardHeader(index)" class="grayFont"
+                            v-html="getCategoryText(item.category)">
             </f7-card-header>
             <f7-card-content>
                 <f7-grid @click.native="onItemClick(index)">
@@ -21,8 +23,10 @@
                 <f7-link color="gray" @click="comment(index)">评论</f7-link>
             </f7-card-footer>
             <f7-list>
-                <f7-list-item :key="index"  class="bg-white" @click="onItemClickComment(index,item)" v-for="(item2, index) in item.commentList" divider>
+                <f7-list-item :key="index" class="bg-white" @click="onItemClickComment(index,item)"
+                              v-for="(item2, index) in item.commentList" divider>
                     {{item.commentList[index]}}
+
                 </f7-list-item>
             </f7-list>
         </f7-card>
@@ -59,55 +63,64 @@
                         text: '杂烩',
                         param: 'ZaHui'
                     }
-                ]
+                ],
             }
         },
         props: ['dataList'],
+        computed: {
+            photos: function () {
+                let array = [];
+                for (let i = 0; i < this.dataList.length; i++) {
+                    array.push({
+                        url: this.dataList[i].image_url,
+                        caption: this.dataList[i].title
+                    })
+                }
+                return array;
+            }
+        },
         methods: {
             onItemClick: function (index) {
                 this.$f7.photoBrowser({
-                    photos: [{
-                        url: this.dataList[index].image_url,
-                        caption: this.dataList[index].title
-                    }],
+                    photos: this.photos,
                     type: 'standalone',
                     theme: 'dark'
 
-                }).open();
+                }).open(index);
             },
             clickCardHeader: function (index) {
             },
             getCategoryText: function (category) {
-                for (let item of this.typeArray){
-                    if (item.param === category){
+                for (let item of this.typeArray) {
+                    if (item.param === category) {
                         return item.text;
                     }
                 }
             },
             favour: function (index) {
                 let item = this.dataList[index];
-                if(item.favour){
+                if (item.favour) {
                     item.favour = !item.favour;
-                }else{
+                } else {
                     item.favour = true;
                 }
                 //通知vue强制更行列表数据
-                this.$set(this.dataList,index,item);
+                this.$set(this.dataList, index, item);
             },
             comment: function (index) {
-                this.$f7.prompt('你有什么想要说的吗?', '评论' ,(value) => {
+                this.$f7.prompt('你有什么想要说的吗?', '评论', (value) => {
                     let item = this.dataList[index];
-                    if(!item.commentList){
+                    if (!item.commentList) {
                         item.commentList = [];
                     }
-                    item.commentList.push("yy: " +value);
-                    this.$set(this.dataList,index,item);
+                    item.commentList.push("yy: " + value);
+                    this.$set(this.dataList, index, item);
                 });
             },
             showFavour: function (item) {
-                if(item.favour){
+                if (item.favour) {
                     return '已赞';
-                }else{
+                } else {
                     return '赞';
                 }
             },
@@ -121,10 +134,12 @@
         width: 100%;
         /*height: 70px;*/
     }
+
     .grayFont {
         color: #6d6d72;
         font-size: 14px;
     }
+
     .bg-white {
         background-color: #ffffff;
     }
