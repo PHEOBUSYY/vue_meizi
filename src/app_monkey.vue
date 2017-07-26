@@ -2,18 +2,20 @@
     <div id="app">
         <f7-statusbar></f7-statusbar>
         <!-- Left Panel -->
-        <left_panel></left_panel>
+        <left_panel v-on:changeCategory="test"></left_panel>
         <!-- Popup -->
         <popup></popup>
         <f7-views tabs>
-            <meizi id="tab1" title="全部" active>
+            <meizi id="tab1" title="全部" active backText="">
             </meizi>
-            <me id="tab2" title="我" ></me>
+            <me id="tab2" title="我"></me>
             <f7-toolbar tabbar labels layout="dark" theme="yellow">
                 <!--icon-badge="5"添加数字-->
-                <f7-link icon-f7="home" tab-link="#tab1" text="妹子"
-                          active></f7-link>
-                <f7-link  icon-f7="bell" tab-link="#tab2" text="我"></f7-link>
+                <f7-link icon-f7="home" tab-link="#tab1" text="users"
+                         active></f7-link>
+                <f7-link icon-f7="bell" tab-link="#tab2" text="repos"></f7-link>
+                <f7-link icon-f7="bell" tab-link="#tab2" text="discovers"></f7-link>
+                <f7-link icon-f7="bell" tab-link="#tab2" text="more"></f7-link>
             </f7-toolbar>
         </f7-views>
     </div>
@@ -36,7 +38,7 @@
     }
 </script>
 <style scoped>
-    /* 设置状态栏颜色 */
+    /* Default Status bar background */
     .statusbar-overlay {
         background: #131313;
         /* We can add transition for smooth color animation */

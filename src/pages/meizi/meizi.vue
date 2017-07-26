@@ -1,80 +1,39 @@
 //  发送网络请求并生成列表的模板
-<!--suppress ALL -->
+
 <template>
     <f7-view main tab :active="active">
+        <topbar back_text="" :title="title" left_img="menu" right_img="add_round" open="right"></topbar>
         <f7-page pull-to-refresh @ptr:refresh="onRefresh" navbar-through toolbar-through
                  infinite-scroll @infinite="onInfiniteScroll">
-            <f7-navbar :back-link="backText" theme="yellow" layout="dark">
-                <f7-nav-left>
-                    <f7-link   icon-f7="menu" open-panel="left"></f7-link>
-                </f7-nav-left>
-                <f7-nav-center @click.native="showActionList">
-                    <p>{{titleText}}</p>
-                    <!--<f7-link theme="white" icon-f7="arrow_down"></f7-link>-->
-                </f7-nav-center>
-                <f7-nav-right>
-                    <f7-link icon-f7="add_round" @click="showActionList"></f7-link>
-                    <!--<f7-link icon-f7="add" open-popup="#popup"></f7-link>-->
-                </f7-nav-right>
-            </f7-navbar>
-            <!--<f7-block-title>Block Title</f7-block-title>-->
             <meizi_item :dataList="dataList"></meizi_item>
         </f7-page>
     </f7-view>
 </template>
+<!--suppress ALL -->
 <script>
+    import Vue from 'vue'
     import {NUMBER_MUTATION} from '../../vuex/mutation-type'
-    import meizi_item from './meizi_item'
-    //    import bus from '../../eventBus'
     import store from '../../vuex/store'
-    import {mapState, mapGetters} from 'vuex'
-    //    import { mapActions } from 'vuex'
+    import meizi_item from './meizi_item'
+    import topbar from '../public/topbar'
+    import common_data from '../public/common_data'
     export default{
+        mixins: [common_data],
         data: function () {
             return {
-                dataList: [],
                 category: this.$store.state.meizi.category,
-                titleText: this.title,
-                typeArray: [
-                    {
-                        text: '全部',
-                        param: 'All'
-                    },
-                    {
-                        text: '清新',
-                        param: 'QingXin'
-                    },
-                    {
-                        text: '翘臀',
-                        param: 'QiaoTun'
-                    },
-                    {
-                        text: '大胸',
-                        param: 'DaXiong'
-                    },
-                    {
-                        text: '美腿',
-                        param: 'MeiTui'
-                    }, {
-                        text: '黑丝',
-                        param: 'HeiSi'
-                    }, {
-                        text: '杂烩',
-                        param: 'ZaHui'
-                    }
-                ],
+                dataList: [],
                 page: 1,
+                title: '全部'
             }
         },
         watch: {
             deep: true,
-//            category: function (val,oldVal) {
-//                alert(val + "00----" + oldVal)
-//            },
             newCategory: function (val, oldVal) {
                 for (var typeObj of this.typeArray) {
                     if (typeObj.param === val) {
-                        this.titleText = typeObj.text;
+                        this.title = typeObj.text;
+                        Vue.set(this, 'title', typeObj.text)
                         break;
                     }
                 }
@@ -89,11 +48,6 @@
                 type: Boolean,
                 default: false,
                 required: false
-            },
-            title: {
-                type: String,
-                default: '标签',
-                required: true
             },
             backText: {
                 type: String,
@@ -135,24 +89,7 @@
             },
             onOpen: function () {
             },
-            showActionList: function () {
-                let buttonsArray = [];
-                for (let index = 0; index < this.typeArray.length; index++) {
-                    buttonsArray[index] = {
-                        text: this.typeArray[index].text,
-//                        bold: true,
-                        onClick: () => {
-                            this.onCategoryClick(index);
-                        }
-                    };
-                }
-                buttonsArray.push({
-                    text: '取消',
-                    color: 'red'
-                });
-                this.$f7.actions(buttonsArray);
 
-            },
             onCategoryClick: function (index) {
                 this.category = this.typeArray[index].param;
                 this.titleText = this.typeArray[index].text;
@@ -176,34 +113,10 @@
         created: function () {
             this.requestData();
         },
-        mounted: function () {
-//            bus.$on('changeCategory', (category) => {
-//                this.category = category;
-//                for (var typeObj of this.typeArray) {
-//                    if (typeObj.param === category) {
-//                        this.titleText = typeObj.text;
-//                        break;
-//                    }
-//                }
-//                this.page = 1;
-//                this.dataList = [];
-//                this.requestData();
-//            });
-        },
         components: {
-            meizi_item,
-//            bus
+            topbar, meizi_item
         },
         store,
-//        computed: {
-//            ...mapState({
-//                newCategory: state => state.meizi.category,
-//                countAlias: 'newCategory',
-//            }),
-//            ...mapGetters({
-//
-//            })
-//        },
         computed: {
             newCategory: function () {
                 return this.$store.state.meizi.category;

@@ -1,6 +1,6 @@
 <template>
   <f7-page>
-    <f7-navbar title="About" back-link="Back" sliding theme="yellow" layout="dark"></f7-navbar>
+      <topbar back_text="返回" title="关于"></topbar>
     <f7-block inner>
       <p>Here is About page!</p>
       <p>You can go <f7-link back>back</f7-link>.</p>
@@ -11,5 +11,8 @@
 </template>
 
 <script>
-export default {}
+    import topbar from '../public/topbar'
+    export default {
+        components: {topbar}
+}
 </script>

@@ -1,6 +1,6 @@
 <template>
     <f7-page>
-        <f7-navbar title="Chart" back-link="Back" sliding theme="yellow" layout="dark"></f7-navbar>
+        <topbar :back_text="'back'" :right_img="'add'" :title="'报表1'"></topbar>
         <f7-block inner>
             <div ref='factoryStock' style="width: 100%;height: 300px;"></div>
         </f7-block>
@@ -8,11 +8,14 @@
 </template>
 <script>
     import echarts from 'echarts'
+    import topbar from '../public/topbar'
     export default{
         data(){
             return {}
         },
-        components: {},
+        components: {
+            topbar
+        },
         mounted(){
             this.myChart = echarts.init(this.$refs.factoryStock);
             this.myChart.setOption({
